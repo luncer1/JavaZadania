@@ -1,6 +1,5 @@
 package com.company;
 
-import javax.swing.*;
 
 public class zadanie1_4 {
     public String toBinary(int n) {
