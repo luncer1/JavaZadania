@@ -41,5 +41,23 @@ public class Main {
 //            w[i].wypiszMiejscaZerowe();                                                            // |
 //        }                                                                                          // |
 // +----------------------------------------------------------------------------------------------------+
+// +--------------------------------------ZADANIE 3.1---------------------------------------------------+
+//    try{
+//        Kolejka k = new Kolejka();
+//        k.doKolejki(new Integer(7));
+//        k.doKolejki(new String("Ala ma kota"));
+//        k.doKolejki(new Double(3.14));
+//        for (int i=1; i<=5; ++i) {
+//            System.out.println((k.zKolejki()).toString());
+//        }
+//    }
+//    catch (Kolejka.Przepelnienie e){
+//        System.out.println("Przepelnienie");
+//    }
+//    catch (Kolejka.Niedomiar e){
+//        System.out.println("Niedomiar!");
+//    }
+
+// +----------------------------------------------------------------------------------------------------+
     }
 }
