@@ -1,22 +1,53 @@
 package com.company.Zadanie4_1;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 
-public class TextEditor {
-    public static void main(String[] args) {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.print("Wprowadź text: ");
-            String text = reader.readLine();
-            String codingStandard = "UTF-8"; // wybór coding standardu
+public class TextEditor extends JFrame implements ActionListener {
+    private JTextArea textArea;
+    private JButton saveButton;
+
+    public TextEditor() {
+        setTitle("Text Editor");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(500, 400);
+        setLocationRelativeTo(null);
+
+        textArea = new JTextArea();
+        JScrollPane scrollPane = new JScrollPane(textArea);
+
+        saveButton = new JButton("Save");
+        saveButton.addActionListener(this);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.add(scrollPane, BorderLayout.CENTER);
+        panel.add(saveButton, BorderLayout.SOUTH);
+
+        add(panel);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == saveButton) {
+            String text = textArea.getText();
+            String codingStandard = "UTF-8";
             String filePath = "text.txt";
             try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(filePath), codingStandard)) {
                 writer.write(text);
-                System.out.println("Zapisano!");
-            } catch (IOException e) {
-                System.out.println("Błąd zapisu." + e.getMessage());
+                JOptionPane.showMessageDialog(this, "Zapisano", "Zapis", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Błąd zapisu: " + ex.getMessage(), "Błąd", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (IOException e) {
-            System.out.println("Wystąpił błąd odczytu z konsoli: " + e.getMessage());
         }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            TextEditor editor = new TextEditor();
+            editor.setVisible(true);
+        });
     }
 }
