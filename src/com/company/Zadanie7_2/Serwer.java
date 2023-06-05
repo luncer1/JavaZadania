@@ -1,4 +1,4 @@
-package Zadanie7_2;
+package com.company.Zadanie7_2;
 
 import java.io.IOException;
 import java.net.ServerSocket;
