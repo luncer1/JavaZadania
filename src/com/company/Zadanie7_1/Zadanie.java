@@ -3,6 +3,8 @@ package com.company.Zadanie7_1;
 import java.net.*;
 import java.io.*;
 
+
+//Cięzko przetestować ponieważ każdy server cały czas zwraca -1
 public class Zadanie {
     public static void main(String[] args) {
         String nazwahosta;
@@ -16,9 +18,15 @@ public class Zadanie {
             Socket gniazdo = new Socket(nazwahosta, 37);
             InputStream strumien = gniazdo.getInputStream();
 
-            DataInputStream dataStream = new DataInputStream(strumien);
-            System.out.println(dataStream.read());
+            long sekundy = 0;
 
+            for (int i = 0; i < 4; i++) {
+                sekundy = (sekundy << 8) | (strumien.read() & 0xFF);
+            }
+
+            gniazdo.close();
+
+            System.out.println("Liczba sekund: " + sekundy);
         }
         catch (UnknownHostException e) {
             System.err.println(e);
